@@ -1,0 +1,13 @@
+cflags = -Wall
+
+rule cc
+  command = clang $cflags -c $in -o $out
+
+rule link
+  command = clang -o $out $in
+
+build wkcp: link main.o WKdmCompress.o WKdmDecompress.o
+build main.o: cc main.c
+build WKdmCompress.o: cc WKdmCompress.c
+build WKdmDecompress.o: cc WKdmDecompress.c
+
